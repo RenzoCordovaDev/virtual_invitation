@@ -40,8 +40,13 @@ _Última actualización: 2026-08-11_
 - [x] Habilitar Cloud Firestore API + crear base de datos — región
       `southamerica-east1`, reglas (`firestore.rules`) ya desplegadas y
       compiladas sin errores
-- [ ] Habilitar Google Sign-In en Firebase Auth (consola) — manual, pendiente
-- [ ] Completar `.env.local` con la config real de Firebase (no comitear)
+- [x] Habilitar Google Sign-In en Firebase Auth (consola) — confirmado por el
+      usuario
+- [x] Completar `.env.local` con la config real de Firebase — app web
+      registrada por CLI (`Invitacion Teresa y Renzo (web)`), config real
+      escrita en `.env.local` (gitignored, nunca comiteado)
+
+Fase 1 100% completa, incluyendo los 3 pasos manuales de consola.
 
 QA certificado 2026-08-11: `npm run build`, `npm run lint`, `npm run test` y
 `npm run test:e2e` en verde. Working tree limpio (sin `node_modules/`, `dist/`
@@ -113,3 +118,8 @@ antes de marcarse `[x]`.
   paso: Fase 2, empezar por el módulo `countdown` (el más simple, sin
   dependencias de Firebase) o resolver los pendientes manuales de Firebase
   primero — a decidir con el usuario.
+- 2026-08-11: Resueltos los 3 pendientes manuales de Firebase: API de
+  Firestore habilitada + base de datos creada (`southamerica-east1`) y
+  reglas desplegadas; Google Sign-In habilitado en Auth; app web registrada
+  por CLI y `.env.local` completado con la config real (gitignored). Fase 1
+  queda 100% cerrada. Siguiente paso: Fase 2, módulo `countdown`.
