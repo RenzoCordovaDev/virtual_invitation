@@ -65,8 +65,9 @@ ni `informacion_base.local.md` trackeados).
       de audio real todavía (no renderiza nada hasta tenerlo)
 - [x] `i18n` — multi-idioma ES/EN (toda la app traducida)
 - [x] `rsvp` — confirmación de asistencia por link personalizado
-- [x] `admin` — login + gestión de invitados + links + respuestas (falta
-      seedear los 3 correos reales en `admins` de Firestore producción)
+- [x] `admin` — login + gestión de invitados + links + respuestas (2/3
+      correos reales ya sembrados en `admins` de Firestore producción —
+      RECO y Jeshu; falta el de la organizadora, correo real pendiente)
 
 Cada módulo pasa por: frontend → unit tests → e2e (si aplica) → code review → QA
 antes de marcarse `[x]`.
@@ -88,9 +89,10 @@ antes de marcarse `[x]`.
   tocar el componente.
 - Coordenadas/place_id exactos de los locales (mejora opcional para QR).
 - Archivo de audio real para `music-player` (canción prevista: "Wonderwall").
-- Seedear los 3 correos reales de administradores en la colección `admins`
-  de Firestore **producción** (manual en consola — ver nota del módulo
-  `admin` más abajo). Sin esto, nadie puede entrar al panel real todavía.
+- Correo real de la organizadora — `informacion_base.local.md` tenía un
+  placeholder (`prueba_organizador@gmail.com`), el usuario confirmó que no es
+  el real todavía. Cuando lo tenga, sembrar su documento en `admins` de
+  Firestore producción con el mismo proceso manual que RECO/Jeshu.
 
 ## Notas de sesión
 
@@ -234,3 +236,17 @@ antes de marcarse `[x]`.
   `music-player`, números reales de mesa de regalos. Ninguno bloquea seguir
   desarrollando — la Fase 2 (funcionalidad) está completa. Siguiente paso:
   Fase 3 (integración y despliegue) — ver checklist más arriba.
+- 2026-08-11: Revisión visual real con Playwright (screenshots en 320px/
+  375px/390px) — encontró y corrigió un bug real de responsive en
+  `countdown` (tarjetas cortadas en celulares angostos, ver commit
+  `ca6cb78`). Desplegado un canal de preview de Firebase Hosting para que
+  el usuario vea el avance:
+  https://boda-teresa-renzo--avance-fase-2-x7twf49v.web.app (expira
+  2026-09-10). Sembrados manualmente en `admins` de Firestore producción
+  los correos reales de RECO y Jeshu (via consola — el acceso de escritura
+  a esa colección está bloqueado por `firestore.rules` a propósito, no hay
+  forma de automatizarlo desde código). Falta el de la organizadora: el
+  usuario confirmó que `prueba_organizador@gmail.com` es un placeholder,
+  todavía no tiene el correo real. Verificación pendiente: que el usuario
+  confirme que puede entrar al panel real
+  (`.../admin/login`) con su cuenta de Google.
