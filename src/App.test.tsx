@@ -16,4 +16,10 @@ describe('App', () => {
     render(<App />)
     expect(screen.getByRole('heading', { name: /falta muy poco/i })).toBeInTheDocument()
   })
+
+  it('renderiza el módulo location: ceremonia y recepción', () => {
+    render(<App />)
+    expect(screen.getByRole('heading', { name: 'Ceremonia' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Recepción' })).toBeInTheDocument()
+  })
 })
