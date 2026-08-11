@@ -57,7 +57,7 @@ ni `informacion_base.local.md` trackeados).
 - [x] `countdown` — cuenta regresiva
 - [ ] `gallery` — galería de fotos / historia de la pareja
 - [x] `location` — mapas + horarios ceremonia/recepción
-- [ ] `dress-code` — código de vestimenta y paleta
+- [x] `dress-code` — código de vestimenta y paleta
 - [ ] `gift-table` — datos de regalo (bancos, Yape, Plin)
 - [ ] `music-player` — audio de fondo
 - [ ] `i18n` — multi-idioma ES/EN
@@ -140,3 +140,8 @@ antes de marcarse `[x]`.
   formateo/componente/secciones y e2e reforzado. Build/lint/unit/e2e en
   verde. Siguiente paso: elegir el próximo módulo (`gallery`, `dress-code`,
   `gift-table`, `music-player`, `i18n`, `rsvp` o `admin`).
+- 2026-08-11: Módulo `dress-code` certificado. Usuario definió el orden para
+  el resto de la Fase 2: `gallery` → `gift-table` → `music-player` → `i18n` →
+  `rsvp`/`admin`. Sin e2e dedicado (no es flujo crítico según
+  `docs/PROJECT.md` sección 5). Build/lint/unit en verde, e2e sin
+  regresiones. Siguiente paso: `gallery`.
