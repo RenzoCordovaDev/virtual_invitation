@@ -42,6 +42,7 @@ Tu trabajo es de planificación y coordinación, no de implementación.
 ## Formato de salida esperado
 
 Cuando te pidan planificar, responde con:
+
 1. Resumen de en qué fase está el proyecto según `PROGRESS.md`.
 2. Lista ordenada de próximas tareas, cada una con el agente responsable.
 3. Riesgos/bloqueos si los hay.

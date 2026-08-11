@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /*
  * Tokens de diseño — ver docs/DESIGN.md sección 1 (Identidad visual).
@@ -12,10 +12,10 @@
   --color-oro: #c9a96e;
   --color-marfil: #faf6f0;
 
-  --font-title: "Cormorant Garamond", serif;
-  --font-subtitle: "Playfair Display", serif;
-  --font-body: "Lato", "Montserrat", sans-serif;
-  --font-script: "Great Vibes", "Pinyon Script", cursive;
+  --font-title: 'Cormorant Garamond', serif;
+  --font-subtitle: 'Playfair Display', serif;
+  --font-body: 'Lato', 'Montserrat', sans-serif;
+  --font-script: 'Great Vibes', 'Pinyon Script', cursive;
 }
 
 body {

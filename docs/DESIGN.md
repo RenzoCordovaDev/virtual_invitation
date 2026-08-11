@@ -1,8 +1,8 @@
 # Diseño — Identidad visual, navegación y mapa de pantallas
 
 Complementa a `docs/PROJECT.md`. El contenido real (textos, fecha, direcciones)
-vive en `informacion_base.md` — este documento define *cómo se ve y cómo se
-navega*, no el contenido en sí.
+vive en `informacion_base.md` — este documento define _cómo se ve y cómo se
+navega_, no el contenido en sí.
 
 ## 1. Identidad visual
 
@@ -14,13 +14,13 @@ reutilizar el código de `G:\BODA\wedding-invitation` (ver memoria
 
 ### Paleta de colores
 
-| Nombre | Hex | Uso |
-|---|---|---|
+| Nombre                      | Hex       | Uso                                     |
+| --------------------------- | --------- | --------------------------------------- |
 | Guinda (vino tinto/borgoña) | `#7B1F3A` | Color primario, fondos oscuros, títulos |
-| Champagne | `#F7E7CE` | Fondos claros, texto sobre oscuro |
-| Oro | `#C9A96E` | Acentos, bordes, detalles decorativos |
-| Blanco Marfil | `#FAF6F0` | Fondo neutro, cards |
-| Guinda Oscuro | `#5A1528` | Sombras, variante hover |
+| Champagne                   | `#F7E7CE` | Fondos claros, texto sobre oscuro       |
+| Oro                         | `#C9A96E` | Acentos, bordes, detalles decorativos   |
+| Blanco Marfil               | `#FAF6F0` | Fondo neutro, cards                     |
+| Guinda Oscuro               | `#5A1528` | Sombras, variante hover                 |
 
 Importante: esta es la paleta **visual del sitio**. El código de vestimenta
 (qué NO deben usar los invitados) es un dato de contenido distinto y está en
@@ -56,7 +56,7 @@ entrada/salida propia.
 ### Implementación técnica
 
 - CSS nativo `scroll-snap-type: y mandatory` en el contenedor, `scroll-snap-align:
-  start` + `height: 100dvh` en cada sección. Es la opción más robusta entre
+start` + `height: 100dvh` en cada sección. Es la opción más robusta entre
   dispositivos (incluye momentum scroll de iOS) y no requiere capturar eventos
   de wheel/touch a mano.
 - Framer Motion (`whileInView` / Intersection Observer) dispara la animación de
@@ -64,7 +64,7 @@ entrada/salida propia.
   por sección definidas en el sistema de animación).
 - Indicador lateral de sección actual (dots) opcional, permite saltar
   directo a una sección — mejora de accesibilidad/UX, no bloqueante para v1.
-- El contenedor de scroll-snap es parte del *shell* de la app
+- El contenedor de scroll-snap es parte del _shell_ de la app
   (`src/layout/`), no de un feature module — simplemente renderiza, en orden,
   las secciones de los módulos que estén activos en `src/config/features.ts`.
   Así un módulo se puede desactivar sin tocar la lógica de navegación.

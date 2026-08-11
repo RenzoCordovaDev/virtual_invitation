@@ -5,6 +5,7 @@ automáticamente en cada sesión de Claude Code dentro de este proyecto — es e
 de partida para retomar el trabajo sin perder contexto.
 
 **Al iniciar una sesión nueva, lee en este orden:**
+
 1. `PROGRESS.md` — qué está hecho, qué sigue, qué está bloqueado.
 2. `docs/PROJECT.md` — definición funcional y técnica completa.
 3. `docs/DESIGN.md` — identidad visual, patrón de navegación y mapa de pantallas.
