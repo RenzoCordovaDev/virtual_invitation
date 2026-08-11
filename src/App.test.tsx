@@ -33,4 +33,9 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: 'Nuestra historia' })).toBeInTheDocument()
     expect(screen.getByText('Próximamente')).toBeInTheDocument()
   })
+
+  it('renderiza el módulo gift-table', () => {
+    render(<App />)
+    expect(screen.getByRole('heading', { name: 'Mesa de regalos' })).toBeInTheDocument()
+  })
 })
