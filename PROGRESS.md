@@ -65,7 +65,8 @@ ni `informacion_base.local.md` trackeados).
       de audio real todavía (no renderiza nada hasta tenerlo)
 - [x] `i18n` — multi-idioma ES/EN (toda la app traducida)
 - [ ] `rsvp` — confirmación de asistencia por link personalizado
-- [ ] `admin` — login (3 usuarios) + gestión de invitados + links + respuestas
+- [x] `admin` — login + gestión de invitados + links + respuestas (falta
+      seedear los 3 correos reales en `admins` de Firestore producción)
 
 Cada módulo pasa por: frontend → unit tests → e2e (si aplica) → code review → QA
 antes de marcarse `[x]`.
@@ -192,3 +193,20 @@ antes de marcarse `[x]`.
   Se instaló Temurin JDK 21 (con autorización del usuario) porque los
   emuladores lo requieren y la máquina tenía Java 17. Build/lint/unit (33
   tests)/e2e en verde. Siguiente paso: módulo `admin`.
+- 2026-08-11: Módulo `admin` certificado. Login (Google Sign-In),
+  RequireAdmin (guard), Dashboard (resumen), y `/admin/guests` (listado +
+  alta/edición/eliminación inline + copiar link — combina "Invitados" y
+  "Respuestas RSVP" en una sola pantalla, ver `docs/DESIGN.md`). AdminRoutes
+  ahora se carga con `React.lazy`: el bundle principal (invitados) bajó de
+  784KB a 238KB, el SDK de Firebase Auth y todo el panel quedan en un chunk
+  aparte de 545KB que solo cargan los administradores. E2E real contra el
+  emulador (`e2e/admin.spec.ts`): login completo vía el popup de "Sign in
+  with Google.com" del emulador (no simulado) y el flujo de agregar
+  invitado. 66 tests unitarios + 3 e2e, todos en verde.
+
+  **Pendiente antes de poder usar el panel en producción real**: crear los
+  3 documentos reales en la colección `admins` de Firestore (producción,
+  no emulador) — correos en `informacion_base.local.md`, nunca comiteados.
+  Es un paso manual en la consola de Firebase (colección `admins`, doc ID =
+  correo, con un campo `email`), igual de rápido que los pasos de Fase 1.
+  Siguiente paso: módulo `rsvp`.

@@ -105,14 +105,16 @@ navegación (opcional).
 Layout de dashboard tradicional — **no** usa scroll-snap, es para uso interno
 de los 3 administradores.
 
-1. **Login** — Google Sign-In restringido a los 3 correos autorizados
-2. **Dashboard** — resumen: total invitados, confirmados, pendientes,
-   rechazados, total de acompañantes confirmados
-3. **Invitados** — listado, buscar/filtrar, botón "agregar invitado"
-4. **Alta / edición de invitado** — nombre, familia/grupo, cupo de
-   acompañantes; genera y muestra el link único (`/i/:slug`) para copiar
-5. **Respuestas RSVP** — detalle por invitado: asistencia, acompañantes
-   confirmados, restricciones alimenticias, mensaje, fecha de respuesta
+1. **Login** (`/admin/login`) — Google Sign-In restringido a los correos en
+   la colección `admins` de Firestore
+2. **Dashboard** (`/admin`) — resumen: total invitados, confirmados,
+   pendientes, rechazados, total de acompañantes confirmados
+3. **Invitados** (`/admin/guests`) — listado con alta/edición/eliminación
+   inline y el link único (`/i/:slug`) para copiar. Decisión de
+   implementación: se combinó con "Respuestas RSVP" en una sola pantalla —
+   cada fila ya muestra estado, acompañantes confirmados, restricciones
+   alimenticias y mensaje; separarlas no aportaba valor para el volumen de
+   invitados esperado.
 
 ## 4. Pendiente de definición
 
