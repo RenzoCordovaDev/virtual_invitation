@@ -65,9 +65,10 @@ ni `informacion_base.local.md` trackeados).
       de audio real todavía (no renderiza nada hasta tenerlo)
 - [x] `i18n` — multi-idioma ES/EN (toda la app traducida)
 - [x] `rsvp` — confirmación de asistencia por link personalizado
-- [x] `admin` — login + gestión de invitados + links + respuestas (2/3
-      correos reales ya sembrados en `admins` de Firestore producción —
-      RECO y Jeshu; falta el de la organizadora, correo real pendiente)
+- [x] `admin` — login + gestión de invitados + links + respuestas.
+      **Verificado en producción real** por el usuario: RECO y Jeshu entran
+      al panel con su cuenta de Google, y se registró un invitado de prueba
+      con éxito. Falta el correo de la organizadora (real, aún pendiente).
 
 Cada módulo pasa por: frontend → unit tests → e2e (si aplica) → code review → QA
 antes de marcarse `[x]`.
@@ -89,6 +90,8 @@ antes de marcarse `[x]`.
   tocar el componente.
 - Coordenadas/place_id exactos de los locales (mejora opcional para QR).
 - Archivo de audio real para `music-player` (canción prevista: "Wonderwall").
+- Borrar el invitado de prueba cargado en Firestore producción durante la
+  verificación del panel admin (antes de cargar la lista real de invitados).
 - Correo real de la organizadora — `informacion_base.local.md` tenía un
   placeholder (`prueba_organizador@gmail.com`), el usuario confirmó que no es
   el real todavía. Cuando lo tenga, sembrar su documento en `admins` de
@@ -247,6 +250,17 @@ antes de marcarse `[x]`.
   a esa colección está bloqueado por `firestore.rules` a propósito, no hay
   forma de automatizarlo desde código). Falta el de la organizadora: el
   usuario confirmó que `prueba_organizador@gmail.com` es un placeholder,
-  todavía no tiene el correo real. Verificación pendiente: que el usuario
-  confirme que puede entrar al panel real
-  (`.../admin/login`) con su cuenta de Google.
+  todavía no tiene el correo real.
+- 2026-08-11: Depurado en vivo con el usuario un `permission-denied` real al
+  intentar entrar al panel: el documento de RECO en `admins` tenía un
+  espacio en blanco al inicio del ID (`" rcordova.reco@gmail.com"` en vez
+  de `"rcordova.reco@gmail.com"`), invisible a simple vista en la consola
+  de Firebase — se detectó pidiendo la URL completa del documento
+  (`%20` en la URL delató el espacio). Se agregó un log de diagnóstico
+  (`console.error` en `verifyIsAdmin`, commit `3f4cd07`) que fue clave para
+  diferenciar "error de reglas de Firestore" de otras causas. **Confirmado
+  por el usuario**: RECO y Jeshu ya entran al panel real con su cuenta de
+  Google, y se registró un invitado de prueba con éxito end-to-end en
+  producción. Pendiente: borrar ese invitado de prueba antes de cargar la
+  lista real (o dejarlo y limpiarlo junto con el resto en ese momento).
+  Sigue faltando el correo real de la organizadora.
