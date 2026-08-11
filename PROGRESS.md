@@ -56,7 +56,7 @@ ni `informacion_base.local.md` trackeados).
 
 - [x] `countdown` — cuenta regresiva
 - [ ] `gallery` — galería de fotos / historia de la pareja
-- [ ] `location` — mapas + horarios ceremonia/recepción
+- [x] `location` — mapas + horarios ceremonia/recepción
 - [ ] `dress-code` — código de vestimenta y paleta
 - [ ] `gift-table` — datos de regalo (bancos, Yape, Plin)
 - [ ] `music-player` — audio de fondo
@@ -132,4 +132,11 @@ antes de marcarse `[x]`.
   (incluye el caso `isPast`) y del componente, más e2e actualizado al
   contenido real. Build/lint/unit/e2e en verde. Siguiente paso: elegir el
   próximo módulo de la Fase 2 (`gallery`, `location`, `dress-code`,
+  `gift-table`, `music-player`, `i18n`, `rsvp` o `admin`).
+- 2026-08-11: Módulo `location` certificado — dos secciones (Ceremonia,
+  Recepción) con `VenueCard` compartido y `formatVenueTime` (siempre proyecta
+  a horario de Perú, probado explícitamente con dos representaciones ISO del
+  mismo instante). Mapas embebidos con `title` accesible. Tests unitarios de
+  formateo/componente/secciones y e2e reforzado. Build/lint/unit/e2e en
+  verde. Siguiente paso: elegir el próximo módulo (`gallery`, `dress-code`,
   `gift-table`, `music-player`, `i18n`, `rsvp` o `admin`).
