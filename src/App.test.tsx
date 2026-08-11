@@ -27,4 +27,10 @@ describe('App', () => {
     render(<App />)
     expect(screen.getByRole('heading', { name: 'Código de vestimenta' })).toBeInTheDocument()
   })
+
+  it('renderiza el módulo gallery (estado "Próximamente" sin contenido cargado)', () => {
+    render(<App />)
+    expect(screen.getByRole('heading', { name: 'Nuestra historia' })).toBeInTheDocument()
+    expect(screen.getByText('Próximamente')).toBeInTheDocument()
+  })
 })
