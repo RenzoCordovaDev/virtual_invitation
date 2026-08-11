@@ -1,4 +1,5 @@
 import { giftTable } from '../../content/giftTable'
+import { useI18n } from '../i18n'
 
 const METHODS = [
   { key: 'bcp', label: 'BCP' },
@@ -8,12 +9,12 @@ const METHODS = [
 ] as const
 
 export function GiftTableSection() {
+  const { t } = useI18n()
+
   return (
     <div className="flex w-full max-w-md flex-col items-center gap-4 text-center">
-      <h2 className="font-subtitle text-2xl text-guinda-oscuro">Mesa de regalos</h2>
-      <p className="text-guinda-oscuro">
-        Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo más:
-      </p>
+      <h2 className="font-subtitle text-2xl text-guinda-oscuro">{t.giftTableHeading}</h2>
+      <p className="text-guinda-oscuro">{t.giftTableIntro}</p>
       <dl className="flex w-full flex-col gap-2">
         {METHODS.map((method) => (
           <div

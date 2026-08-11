@@ -12,4 +12,6 @@ export interface GalleryPhoto {
 
 export const galleryPhotos: GalleryPhoto[] = []
 
-export const ourStory: string | null = null
+// Bilingüe porque es contenido específico de esta boda, no copy fijo de la
+// app (ver src/features/i18n/translations.ts para el heading/estado vacío).
+export const ourStory: { es: string; en: string } | null = null
