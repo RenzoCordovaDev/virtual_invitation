@@ -72,9 +72,15 @@ Los invitados (público) no se autentican: acceden por su link único
   que agregar o quitar una funcionalidad no implica tocar otros módulos.
 - **Estado**: React Context + hooks nativos (no se justifica Redux/Zustand para
   este tamaño de app).
-- **Estilos**: por definir en la fase de diseño (candidatas: CSS Modules o
-  Tailwind) — paleta vino tinto/borgoña + champagne ya definida en
-  `informacion_base.md`.
+- **Estilos**: Tailwind CSS. Tokens de color/tipografía y el resto del sistema
+  de diseño en `docs/DESIGN.md`.
+- **Navegación de invitados**: scroll-snap de pantalla completa (una sección =
+  un viewport, con animación de transición, nunca una sección a medias) vía
+  `src/layout/`. Detalle técnico y mapa de pantallas completo en
+  `docs/DESIGN.md`.
+- **Autenticación admin**: Firebase Auth con Google Sign-In, restringido por
+  allow-list de los 3 correos (reglas de Firestore validan
+  `request.auth.token.email`).
 
 ## 5. Testing (estándar del proyecto)
 
@@ -135,8 +141,13 @@ Por ser público, se sigue esta regla estricta:
 
 ## 9. Pendientes de definición
 
-- Librería de estilos (CSS Modules vs Tailwind).
-- Proveedor de sign-in para Firebase Auth (password vs Google).
-- Nombre del proyecto Firebase / repositorio GitHub.
+- Nombre del proyecto Firebase (aún no creado en Firebase Console).
 - CI (GitHub Actions) para correr tests en cada PR — deseable, no bloqueante para
   arrancar a codificar.
+- Fotos reales, coordenadas exactas de los locales — ver `docs/DESIGN.md`
+  sección 4.
+
+Resuelto: librería de estilos (Tailwind CSS), proveedor de sign-in (Google
+Sign-In), identidad visual y mapa de pantallas — ver `docs/DESIGN.md`.
+Repositorio GitHub: https://github.com/RenzoCordovaDev/virtual_invitation
+(público).

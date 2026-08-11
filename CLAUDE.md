@@ -7,17 +7,23 @@ de partida para retomar el trabajo sin perder contexto.
 **Al iniciar una sesión nueva, lee en este orden:**
 1. `PROGRESS.md` — qué está hecho, qué sigue, qué está bloqueado.
 2. `docs/PROJECT.md` — definición funcional y técnica completa.
-3. `informacion_base.md` — contenido real del evento (nombres, fecha, ubicaciones,
+3. `docs/DESIGN.md` — identidad visual, patrón de navegación y mapa de pantallas.
+4. `informacion_base.md` — contenido real del evento (nombres, fecha, ubicaciones,
    dress code, mesa de regalos, música, correos de administradores).
 
 ## Resumen del stack
 
-- React + Vite (SPA)
+- React + Vite (SPA), Tailwind CSS
 - Firebase: Firestore (solo datos dinámicos de invitados/RSVP), Firebase Auth
-  (3 administradores), Firebase Hosting (despliegue, subdominio `.web.app`)
+  con Google Sign-In restringido a 3 correos (administradores), Firebase Hosting
+  (despliegue, subdominio `.web.app`)
 - Testing: Vitest + React Testing Library (unitarios), Playwright (e2e)
 - Arquitectura modular por feature: `src/features/<modulo>/`, activables/
   desactivables desde `src/config/features.ts`
+- Navegación de invitados: scroll-snap de pantalla completa (una sección por
+  viewport, con animación de transición) vía `src/layout/` — ver
+  `docs/DESIGN.md`. El panel admin (`/admin/*`) es un dashboard normal, sin
+  scroll-snap.
 
 ## Reglas de trabajo
 

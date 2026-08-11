@@ -14,8 +14,10 @@ _Última actualización: 2026-08-11_
 - [x] Levantar contenido base del evento (`informacion_base.md`)
 - [x] Crear agentes especializados (`.claude/agents/`)
 - [x] Crear skills globales y específicas
-- [ ] Definir librería de estilos (CSS Modules vs Tailwind)
-- [ ] Definir proveedor de sign-in (password vs Google) para Firebase Auth
+- [x] Definir librería de estilos — Tailwind CSS
+- [x] Definir proveedor de sign-in — Google Sign-In (allow-list de 3 correos)
+- [x] Definir identidad visual y patrón de navegación (`docs/DESIGN.md`)
+- [x] Definir mapa de pantallas (invitado + admin) (`docs/DESIGN.md`)
 - [ ] Crear proyecto en Firebase Console (nombre, región)
 - [x] Crear repositorio en GitHub y conectar remoto — https://github.com/RenzoCordovaDev/virtual_invitation (público)
 
@@ -54,10 +56,10 @@ antes de marcarse `[x]`.
 
 ## Bloqueados / pendientes de decisión
 
-- Librería de estilos.
-- Proveedor de sign-in para admins.
 - Detalles finales de mesa de regalos (números de cuenta reales — placeholder en
-  `informacion_base.md`).
+  `informacion_base.md`, nunca reales en el repo — ver `docs/PROJECT.md` sección 8).
+- Fotos reales para Hero/Galería.
+- Coordenadas/place_id exactos de los locales (mejora opcional para QR).
 
 ## Notas de sesión
 
@@ -69,3 +71,12 @@ antes de marcarse `[x]`.
   tests). El usuario decidió explícitamente **no reutilizarlo**: este proyecto
   (`virtual_invitation`) se construye de cero siguiendo el plan de este documento.
   No proponer migrar ese código salvo pedido explícito.
+- 2026-08-11: Definidas identidad visual y navegación (`docs/DESIGN.md`):
+  Tailwind CSS, Google Sign-In para admins, scroll-snap de pantalla completa,
+  paleta/tipografía adaptadas de `G:\BODA\PROJECT_CONTEXT.md` (solo el sistema
+  de diseño, no el código de wedding-invitation). Se confirmó fecha de boda
+  (26 dic 2026) y se corrigió el código de vestimenta en `informacion_base.md`
+  para que sea inequívoco: TODOS los colores listados (blanco, vino
+  tinto/borgoña, champagne, palo rosa, beige) están prohibidos para invitados
+  sin excepción. Próximo paso: crear proyecto en Firebase Console y arrancar
+  Fase 1 (scaffold).

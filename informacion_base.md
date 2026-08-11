@@ -2,6 +2,9 @@
  * Teresa Vasquez
  * Renzo Cordova
 
+# Fecha de la boda
+Sábado 26 de diciembre de 2026
+
 # Evento religioso
 Hora: 5pm
 Iglesia San Martin de Porres, iquitos
@@ -16,8 +19,9 @@ Ubicacion:
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1990.6418807560362!2d-73.25358038376383!3d-3.7482543597252636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ea117ba659bfab%3A0xc2fc6dd3db9f9872!2sILUSTRE%20COLEGIO%20DE%20ABOGADOS%20DE%20LORETO!5e0!3m2!1ses!2spe!4v1786462154231!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe
 
 # Codigo de vestimenta
-Elegante, no usar colores blancos, vino tinto / borgoña,
-champagne, palo rosa, beige
+Elegante. Colores NO permitidos para invitados, sin excepción — están
+reservados para los novios y personas importantes del evento: blanco,
+vino tinto / borgoña, champagne, palo rosa, beige.
 
 # Paleta de colores
 vino tinto / borgoña
