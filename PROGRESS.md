@@ -25,13 +25,28 @@ _Última actualización: 2026-08-11_
 
 ## Fase 1 — Setup del proyecto
 
-- [ ] Scaffold Vite + React (TypeScript)
-- [ ] Configurar ESLint + Prettier
-- [ ] Configurar Firebase SDK (Firestore, Auth, Hosting) en el proyecto
-- [ ] Configurar Vitest + React Testing Library
-- [ ] Configurar Playwright
-- [ ] Estructura base `src/features/`, `src/content/`, `src/config/features.ts`
-- [ ] Reglas de seguridad de Firestore (allow-list de 3 correos admin)
+- [x] Scaffold Vite + React (TypeScript) — Vite 8, React 19, TS 6
+- [x] Configurar ESLint + Prettier
+- [x] Configurar Tailwind CSS con tokens de `docs/DESIGN.md`
+- [x] Configurar Firebase SDK (app/auth/firestore) en el proyecto —
+      `src/lib/firebase/config.ts`, vía variables de entorno
+- [x] Configurar Vitest + React Testing Library
+- [x] Configurar Playwright
+- [x] Estructura base `src/features/`, `src/content/`, `src/config/features.ts`,
+      `src/layout/`
+- [x] Reglas de seguridad de Firestore (`firestore.rules`, allow-list vía
+      colección `admins`, sin correos reales) — primer borrador, se afina al
+      implementar `rsvp`/`admin`
+- [ ] Habilitar Cloud Firestore API + crear base de datos (región
+      `southamerica-east1`) — requiere un clic manual en la consola, no se
+      pudo hacer por CLI sin interacción de navegador:
+      https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=boda-teresa-renzo
+- [ ] Habilitar Google Sign-In en Firebase Auth (consola) — manual, pendiente
+- [ ] Completar `.env.local` con la config real de Firebase (no comitear)
+
+QA certificado 2026-08-11: `npm run build`, `npm run lint`, `npm run test` y
+`npm run test:e2e` en verde. Working tree limpio (sin `node_modules/`, `dist/`
+ni `informacion_base.local.md` trackeados).
 
 ## Fase 2 — Módulos funcionales (v1)
 
@@ -87,3 +102,15 @@ antes de marcarse `[x]`.
   Falta elegir región de Firestore/Storage y habilitar Firestore, Auth (Google
   Sign-In) y Hosting — se hace en Fase 1 junto con el scaffold. Fase 0
   (planificación) queda cerrada.
+- 2026-08-11: Fase 1 (setup) certificada. Scaffold Vite+React+TS, Tailwind con
+  tokens de marca, ESLint+Prettier, Firebase SDK (config vía env vars),
+  estructura modular (`src/features/`, `src/content/`, `src/config/`,
+  `src/layout/`), Vitest+RTL y Playwright configurados con un test de humo
+  cada uno. `firestore.rules` primer borrador (allow-list de admins vía
+  colección, sin correos reales). Build/lint/unit/e2e en verde. Quedan 3
+  pasos manuales de consola antes de poder desplegar: habilitar Cloud
+  Firestore API + crear la base de datos, habilitar Google Sign-In en Auth, y
+  completar `.env.local` con la config real del proyecto Firebase. Siguiente
+  paso: Fase 2, empezar por el módulo `countdown` (el más simple, sin
+  dependencias de Firebase) o resolver los pendientes manuales de Firebase
+  primero — a decidir con el usuario.
