@@ -31,7 +31,11 @@ export async function verifyIsAdmin(email: string): Promise<boolean> {
   try {
     const snap = await getDoc(doc(db, 'admins', email))
     return snap.exists()
-  } catch {
+  } catch (error) {
+    // No exponemos el detalle en la UI (mensaje genérico de "no autorizado"),
+    // pero lo dejamos en consola para poder diagnosticar problemas de reglas
+    // de Firestore o de datos sembrados incorrectamente.
+    console.error('verifyIsAdmin: error al verificar el correo', email, error)
     return false
   }
 }
