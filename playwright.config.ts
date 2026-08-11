@@ -5,6 +5,8 @@ export default defineConfig({
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
   reporter: 'html',
+  // Requiere `firebase emulators:start` corriendo aparte (ver e2e/global-setup.ts).
+  globalSetup: './e2e/global-setup.ts',
   use: {
     baseURL: 'http://localhost:4173',
     trace: 'on-first-retry',
@@ -14,5 +16,8 @@ export default defineConfig({
     command: 'npm run build && npm run preview',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
+    env: {
+      VITE_USE_FIREBASE_EMULATOR: 'true',
+    },
   },
 })
