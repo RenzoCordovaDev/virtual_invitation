@@ -37,10 +37,9 @@ _Última actualización: 2026-08-11_
 - [x] Reglas de seguridad de Firestore (`firestore.rules`, allow-list vía
       colección `admins`, sin correos reales) — primer borrador, se afina al
       implementar `rsvp`/`admin`
-- [ ] Habilitar Cloud Firestore API + crear base de datos (región
-      `southamerica-east1`) — requiere un clic manual en la consola, no se
-      pudo hacer por CLI sin interacción de navegador:
-      https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=boda-teresa-renzo
+- [x] Habilitar Cloud Firestore API + crear base de datos — región
+      `southamerica-east1`, reglas (`firestore.rules`) ya desplegadas y
+      compiladas sin errores
 - [ ] Habilitar Google Sign-In en Firebase Auth (consola) — manual, pendiente
 - [ ] Completar `.env.local` con la config real de Firebase (no comitear)
 
