@@ -1,10 +1,19 @@
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 
 describe('App', () => {
-  it('muestra los nombres de los novios', () => {
+  beforeEach(() => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-12-25T17:00:00-05:00'))
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  it('renderiza el módulo countdown (habilitado en config/features.ts)', () => {
     render(<App />)
-    expect(screen.getByRole('heading', { name: /teresa.*renzo/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /falta muy poco/i })).toBeInTheDocument()
   })
 })
