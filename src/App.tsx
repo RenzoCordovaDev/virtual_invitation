@@ -1,9 +1,17 @@
+import { isFeatureEnabled } from './config/features'
+import { Countdown } from './features/countdown'
+import { ScrollContainer } from './layout/ScrollContainer'
+import { Section } from './layout/Section'
+
 function App() {
   return (
-    <main className="flex min-h-dvh flex-col items-center justify-center gap-2 text-center">
-      <h1 className="font-title text-5xl text-guinda">Teresa &amp; Renzo</h1>
-      <p className="font-body text-guinda-oscuro">Invitación en construcción.</p>
-    </main>
+    <ScrollContainer>
+      {isFeatureEnabled('countdown') && (
+        <Section>
+          <Countdown />
+        </Section>
+      )}
+    </ScrollContainer>
   )
 }
 
