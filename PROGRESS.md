@@ -59,7 +59,8 @@ ni `informacion_base.local.md` trackeados).
       estado "próximamente"; contenido real pendiente)
 - [x] `location` — mapas + horarios ceremonia/recepción
 - [x] `dress-code` — código de vestimenta y paleta
-- [ ] `gift-table` — datos de regalo (bancos, Yape, Plin)
+- [x] `gift-table` — datos de regalo (bancos, Yape, Plin) — placeholders,
+      números reales pendientes (nunca se comitean)
 - [ ] `music-player` — audio de fondo
 - [ ] `i18n` — multi-idioma ES/EN
 - [ ] `rsvp` — confirmación de asistencia por link personalizado
@@ -155,3 +156,9 @@ antes de marcarse `[x]`.
   de pantallas de `docs/DESIGN.md` (Countdown → Galería → Ceremonia →
   Recepción → Dress code), en vez del orden de construcción. Build/lint/unit
   en verde, e2e sin regresiones. Siguiente paso: `gift-table`.
+- 2026-08-11: Módulo `gift-table` certificado. `src/content/giftTable.ts`
+  con los placeholders actuales de `informacion_base.md`; cuando el usuario
+  tenga los números reales, se cargarán vía un mecanismo local no versionado
+  (mismo criterio que `informacion_base.local.md`/`.env.local`), nunca
+  comiteados. Build/lint/unit en verde, e2e sin regresiones. Siguiente paso:
+  `music-player`.
