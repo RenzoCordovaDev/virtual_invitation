@@ -44,6 +44,13 @@ describe('InvitationPage', () => {
     expect(screen.queryByRole('button', { name: /reproducir|pausar/i })).not.toBeInTheDocument()
   })
 
+  it('renderiza el módulo rsvp (sin slug: mensaje de usar el link personal)', () => {
+    render(<InvitationPage />)
+    expect(
+      screen.getByText('Usa el link personal que te compartimos para confirmar tu asistencia.'),
+    ).toBeInTheDocument()
+  })
+
   it('el selector de idioma cambia todo el contenido de es a en', () => {
     render(<InvitationPage />)
 
