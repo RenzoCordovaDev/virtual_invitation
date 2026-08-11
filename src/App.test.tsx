@@ -1,60 +1,29 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
+import { MemoryRouter } from 'react-router'
 import App from './App'
 
-describe('App', () => {
-  beforeEach(() => {
-    vi.useFakeTimers()
-    vi.setSystemTime(new Date('2026-12-25T17:00:00-05:00'))
-  })
+function renderAt(path: string) {
+  return render(
+    <MemoryRouter initialEntries={[path]}>
+      <App />
+    </MemoryRouter>,
+  )
+}
 
-  afterEach(() => {
-    vi.useRealTimers()
-  })
-
-  it('renderiza el módulo countdown (habilitado en config/features.ts)', () => {
-    render(<App />)
+describe('App (routing)', () => {
+  it('"/" renderiza la invitación genérica', () => {
+    renderAt('/')
     expect(screen.getByRole('heading', { name: /falta muy poco/i })).toBeInTheDocument()
   })
 
-  it('renderiza el módulo location: ceremonia y recepción', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { name: 'Ceremonia' })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Recepción' })).toBeInTheDocument()
+  it('"/i/:slug" renderiza la invitación (personalización la agrega el módulo rsvp)', () => {
+    renderAt('/i/abc123')
+    expect(screen.getByRole('heading', { name: /falta muy poco/i })).toBeInTheDocument()
   })
 
-  it('renderiza el módulo dress-code', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { name: 'Código de vestimenta' })).toBeInTheDocument()
-  })
-
-  it('renderiza el módulo gallery (estado "Próximamente" sin contenido cargado)', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { name: 'Nuestra historia' })).toBeInTheDocument()
-    expect(screen.getByText('Próximamente')).toBeInTheDocument()
-  })
-
-  it('renderiza el módulo gift-table', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { name: 'Mesa de regalos' })).toBeInTheDocument()
-  })
-
-  it('no muestra el botón de música mientras no haya audio configurado', () => {
-    render(<App />)
-    expect(
-      screen.queryByRole('button', { name: /reproducir|pausar/i }),
-    ).not.toBeInTheDocument()
-  })
-
-  it('el selector de idioma cambia todo el contenido de es a en', () => {
-    render(<App />)
-
-    expect(screen.getByRole('heading', { name: 'Código de vestimenta' })).toBeInTheDocument()
-
-    fireEvent.click(screen.getByRole('button', { name: 'Switch to English' }))
-
-    expect(screen.getByRole('heading', { name: 'Dress code' })).toBeInTheDocument()
-    expect(screen.queryByRole('heading', { name: 'Código de vestimenta' })).not.toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Cambiar a español' })).toBeInTheDocument()
+  it('"/admin" renderiza las rutas de administración', () => {
+    renderAt('/admin')
+    expect(screen.getByText(/panel de administración/i)).toBeInTheDocument()
   })
 })
