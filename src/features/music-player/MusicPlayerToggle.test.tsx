@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 describe('MusicPlayerToggle', () => {
@@ -11,8 +11,9 @@ describe('MusicPlayerToggle', () => {
     vi.resetModules()
     vi.doMock('../../content/music', () => ({ music: { title: 'Wonderwall', audioSrc: null } }))
     const { MusicPlayerToggle } = await import('./MusicPlayerToggle')
+    const { renderWithProviders } = await import('../../test/renderWithProviders')
 
-    render(<MusicPlayerToggle />)
+    renderWithProviders(<MusicPlayerToggle />)
 
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
   })
@@ -23,8 +24,9 @@ describe('MusicPlayerToggle', () => {
       music: { title: 'Wonderwall', audioSrc: '/audio/wonderwall.mp3' },
     }))
     const { MusicPlayerToggle } = await import('./MusicPlayerToggle')
+    const { renderWithProviders } = await import('../../test/renderWithProviders')
 
-    render(<MusicPlayerToggle />)
+    renderWithProviders(<MusicPlayerToggle />)
 
     const playButton = screen.getByRole('button', { name: 'Reproducir "Wonderwall"' })
     fireEvent.click(playButton)

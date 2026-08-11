@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { ceremony } from '../../content/event'
+import { renderWithProviders } from '../../test/renderWithProviders'
 import { CeremonySection } from './CeremonySection'
 
 describe('CeremonySection', () => {
   it('usa los datos reales de la ceremonia desde src/content/event.ts', () => {
-    render(<CeremonySection />)
+    renderWithProviders(<CeremonySection />)
 
     expect(screen.getByRole('heading', { name: 'Ceremonia' })).toBeInTheDocument()
     expect(screen.getByText(ceremony.name)).toBeInTheDocument()

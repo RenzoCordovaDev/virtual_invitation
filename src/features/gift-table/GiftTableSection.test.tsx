@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { giftTable } from '../../content/giftTable'
+import { renderWithProviders } from '../../test/renderWithProviders'
 import { GiftTableSection } from './GiftTableSection'
 
 describe('GiftTableSection', () => {
   it('muestra los 4 métodos de pago con sus valores de informacion_base.md', () => {
-    render(<GiftTableSection />)
+    renderWithProviders(<GiftTableSection />)
 
     expect(screen.getByRole('heading', { name: 'Mesa de regalos' })).toBeInTheDocument()
     expect(screen.getByText('BCP')).toBeInTheDocument()
