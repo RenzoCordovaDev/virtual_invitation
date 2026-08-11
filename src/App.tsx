@@ -1,5 +1,6 @@
 import { isFeatureEnabled } from './config/features'
 import { Countdown } from './features/countdown'
+import { DressCodeSection } from './features/dress-code'
 import { CeremonySection, ReceptionSection } from './features/location'
 import { ScrollContainer } from './layout/ScrollContainer'
 import { Section } from './layout/Section'
@@ -21,6 +22,11 @@ function App() {
             <ReceptionSection />
           </Section>
         </>
+      )}
+      {isFeatureEnabled('dressCode') && (
+        <Section>
+          <DressCodeSection />
+        </Section>
       )}
     </ScrollContainer>
   )
