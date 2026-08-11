@@ -61,7 +61,8 @@ ni `informacion_base.local.md` trackeados).
 - [x] `dress-code` — código de vestimenta y paleta
 - [x] `gift-table` — datos de regalo (bancos, Yape, Plin) — placeholders,
       números reales pendientes (nunca se comitean)
-- [ ] `music-player` — audio de fondo
+- [x] `music-player` — audio de fondo — control flotante listo, sin archivo
+      de audio real todavía (no renderiza nada hasta tenerlo)
 - [ ] `i18n` — multi-idioma ES/EN
 - [ ] `rsvp` — confirmación de asistencia por link personalizado
 - [ ] `admin` — login (3 usuarios) + gestión de invitados + links + respuestas
@@ -162,3 +163,8 @@ antes de marcarse `[x]`.
   (mismo criterio que `informacion_base.local.md`/`.env.local`), nunca
   comiteados. Build/lint/unit en verde, e2e sin regresiones. Siguiente paso:
   `music-player`.
+- 2026-08-11: Módulo `music-player` certificado. Control flotante persistente
+  (no es una sección del scroll-snap), no renderiza nada mientras
+  `src/content/music.ts` tenga `audioSrc: null` — canción prevista
+  "Wonderwall", falta el archivo de audio real. Build/lint/unit en verde,
+  e2e sin regresiones. Siguiente paso: `i18n`.
