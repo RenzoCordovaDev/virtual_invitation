@@ -1,0 +1,44 @@
+rules_version = '2';
+
+// Primera versión de las reglas — se afina durante la implementación de los
+// módulos `rsvp` y `admin` (ver PROGRESS.md Fase 2). Importante: no hay
+// correos reales aquí (ver docs/PROJECT.md sección 8) — el allow-list de
+// administradores vive en la colección `admins`, cuyos documentos reales se
+// crean a mano en producción, nunca vía seed comiteado.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.token.email));
+    }
+
+    // doc ID = correo del admin. Nadie escribe esta colección desde el
+    // cliente — se gestiona a mano desde la consola de Firebase.
+    match /admins/{email} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // doc ID = slug único del invitado/familia (el mismo que va en /i/:slug).
+    match /guests/{slug} {
+      // Cualquiera con el link puede leer SU documento puntual (no puede
+      // listar ni buscar otros invitados).
+      allow get: if true;
+      allow list: if isAdmin();
+
+      // El invitado solo puede modificar los campos de su respuesta RSVP,
+      // nunca su nombre, cupo de acompañantes ni el slug.
+      allow update: if isAdmin() ||
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['rsvpStatus', 'confirmedCompanions', 'dietaryRestrictions', 'message', 'respondedAt']);
+
+      allow create, delete: if isAdmin();
+    }
+
+    // Cualquier otra colección futura: cerrada por defecto.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
