@@ -1,6 +1,7 @@
 import { isFeatureEnabled } from './config/features'
 import { Countdown } from './features/countdown'
 import { DressCodeSection } from './features/dress-code'
+import { GallerySection } from './features/gallery'
 import { CeremonySection, ReceptionSection } from './features/location'
 import { ScrollContainer } from './layout/ScrollContainer'
 import { Section } from './layout/Section'
@@ -11,6 +12,11 @@ function App() {
       {isFeatureEnabled('countdown') && (
         <Section>
           <Countdown />
+        </Section>
+      )}
+      {isFeatureEnabled('gallery') && (
+        <Section>
+          <GallerySection />
         </Section>
       )}
       {isFeatureEnabled('location') && (
