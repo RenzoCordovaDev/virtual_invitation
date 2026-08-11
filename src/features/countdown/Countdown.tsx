@@ -27,14 +27,16 @@ export function Countdown() {
   return (
     <div className="flex flex-col items-center gap-8 text-center">
       <h2 className="font-subtitle text-2xl text-guinda-oscuro">{t.countdownHeading}</h2>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
         {UNIT_KEYS.map((key) => (
           <div
             key={key}
-            className="flex min-w-20 flex-col items-center rounded-lg bg-champagne px-4 py-3"
+            className="flex min-w-14 flex-col items-center rounded-lg bg-champagne px-2 py-3 sm:min-w-20 sm:px-4"
           >
-            <span className="font-title text-4xl text-guinda">{values[key]}</span>
-            <span className="text-sm tracking-wide text-guinda-oscuro uppercase">{t[key]}</span>
+            <span className="font-title text-3xl text-guinda sm:text-4xl">{values[key]}</span>
+            <span className="text-xs tracking-wide text-guinda-oscuro uppercase sm:text-sm">
+              {t[key]}
+            </span>
           </div>
         ))}
       </div>
