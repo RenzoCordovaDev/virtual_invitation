@@ -38,4 +38,9 @@ describe('App', () => {
     render(<App />)
     expect(screen.getByRole('heading', { name: 'Mesa de regalos' })).toBeInTheDocument()
   })
+
+  it('no muestra el botón de música mientras no haya audio configurado', () => {
+    render(<App />)
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
+  })
 })
