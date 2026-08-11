@@ -55,7 +55,8 @@ ni `informacion_base.local.md` trackeados).
 ## Fase 2 — Módulos funcionales (v1)
 
 - [x] `countdown` — cuenta regresiva
-- [ ] `gallery` — galería de fotos / historia de la pareja
+- [x] `gallery` — galería de fotos / historia de la pareja (estructura +
+      estado "próximamente"; contenido real pendiente)
 - [x] `location` — mapas + horarios ceremonia/recepción
 - [x] `dress-code` — código de vestimenta y paleta
 - [ ] `gift-table` — datos de regalo (bancos, Yape, Plin)
@@ -79,7 +80,9 @@ antes de marcarse `[x]`.
 
 - Detalles finales de mesa de regalos (números de cuenta reales — placeholder en
   `informacion_base.md`, nunca reales en el repo — ver `docs/PROJECT.md` sección 8).
-- Fotos reales para Hero/Galería.
+- Fotos reales para Hero/Galería — el módulo `gallery` ya está listo para
+  recibirlas en `src/content/gallery.ts` (`galleryPhotos`, `ourStory`) sin
+  tocar el componente.
 - Coordenadas/place_id exactos de los locales (mejora opcional para QR).
 
 ## Notas de sesión
@@ -145,3 +148,10 @@ antes de marcarse `[x]`.
   `rsvp`/`admin`. Sin e2e dedicado (no es flujo crítico según
   `docs/PROJECT.md` sección 5). Build/lint/unit en verde, e2e sin
   regresiones. Siguiente paso: `gallery`.
+- 2026-08-11: Módulo `gallery` certificado con estado "Próximamente"
+  (`src/content/gallery.ts` vacío hasta que el usuario provea fotos/historia
+  — cuando lleguen, se completan ahí sin tocar el componente). De paso se
+  corrigió el orden de secciones en `App.tsx` para que coincida con el mapa
+  de pantallas de `docs/DESIGN.md` (Countdown → Galería → Ceremonia →
+  Recepción → Dress code), en vez del orden de construcción. Build/lint/unit
+  en verde, e2e sin regresiones. Siguiente paso: `gift-table`.
