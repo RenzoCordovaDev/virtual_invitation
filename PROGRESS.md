@@ -181,3 +181,14 @@ antes de marcarse `[x]`.
   módulos de la Fase 2 (`countdown`, `location`, `dress-code`, `gallery`,
   `gift-table`, `music-player`, `i18n`). Siguiente paso: `rsvp` o `admin`
   (los dos módulos que requieren Firestore/Auth reales).
+- 2026-08-11: Infraestructura compartida lista para `rsvp`/`admin`: React
+  Router (`/`, `/i/:slug`, `/admin/*` — la experiencia actual se movió a
+  `src/pages/InvitationPage.tsx` sin cambios), modelo de invitado
+  (`src/types/guest.ts`), capa Firestore (`src/lib/firebase/guests.ts`,
+  slugs con `nanoid`, no adivinables), Auth de admin
+  (`src/lib/firebase/adminAuth.ts`, allow-list vía colección `admins`, sin
+  correos hardcodeados), y emuladores de Firebase configurados
+  (`firebase.json`, conectados solo con `VITE_USE_FIREBASE_EMULATOR=true`).
+  Se instaló Temurin JDK 21 (con autorización del usuario) porque los
+  emuladores lo requieren y la máquina tenía Java 17. Build/lint/unit (33
+  tests)/e2e en verde. Siguiente paso: módulo `admin`.
