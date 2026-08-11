@@ -63,7 +63,7 @@ ni `informacion_base.local.md` trackeados).
       números reales pendientes (nunca se comitean)
 - [x] `music-player` — audio de fondo — control flotante listo, sin archivo
       de audio real todavía (no renderiza nada hasta tenerlo)
-- [ ] `i18n` — multi-idioma ES/EN
+- [x] `i18n` — multi-idioma ES/EN (toda la app traducida)
 - [ ] `rsvp` — confirmación de asistencia por link personalizado
 - [ ] `admin` — login (3 usuarios) + gestión de invitados + links + respuestas
 
@@ -168,3 +168,16 @@ antes de marcarse `[x]`.
   `src/content/music.ts` tenga `audioSrc: null` — canción prevista
   "Wonderwall", falta el archivo de audio real. Build/lint/unit en verde,
   e2e sin regresiones. Siguiente paso: `i18n`.
+- 2026-08-11: Módulo `i18n` certificado — el más grande hasta ahora, tocó
+  todos los módulos previos. `src/features/i18n/` (context + provider + hook
+  + LanguageToggle, separados en archivos por la regla de react-refresh de
+  un componente por archivo) con diccionario ES/EN tipado
+  (`translations.ts`). Contenido específico de la boda que necesita
+  traducción humana (dress-code, historia) pasa a formato bilingüe
+  `{ es, en }` en `src/content/`, distinto del copy fijo de la app. Los 6
+  módulos anteriores refactorizados para consumir `useI18n()`. Test de
+  integración en `App.test.tsx` confirma que el toggle cambia todo el
+  contenido visible. Build/lint/unit (30 tests)/e2e en verde. Van 7 de 9
+  módulos de la Fase 2 (`countdown`, `location`, `dress-code`, `gallery`,
+  `gift-table`, `music-player`, `i18n`). Siguiente paso: `rsvp` o `admin`
+  (los dos módulos que requieren Firestore/Auth reales).
