@@ -6,7 +6,8 @@ import {
   type Unsubscribe,
 } from 'firebase/auth'
 import { doc, getDoc } from 'firebase/firestore'
-import { auth, db, googleProvider } from './config'
+import { auth, googleProvider } from './authConfig'
+import { db } from './config'
 
 export function signInAdminWithGoogle(): Promise<User> {
   return signInWithPopup(auth, googleProvider).then((result) => result.user)

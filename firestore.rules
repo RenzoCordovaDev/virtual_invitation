@@ -28,10 +28,17 @@ service cloud.firestore {
       allow list: if isAdmin();
 
       // El invitado solo puede modificar los campos de su respuesta RSVP,
-      // nunca su nombre, cupo de acompañantes ni el slug.
+      // nunca su nombre, cupo de acompañantes ni el slug. El cupo se valida
+      // acá también (no solo en el formulario) para que nadie pueda mandar
+      // un numero de acompañantes mayor al permitido llamando a la API
+      // directo.
       allow update: if isAdmin() ||
-        request.resource.data.diff(resource.data).affectedKeys()
-          .hasOnly(['rsvpStatus', 'confirmedCompanions', 'dietaryRestrictions', 'message', 'respondedAt']);
+        (request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['rsvpStatus', 'confirmedCompanions', 'dietaryRestrictions', 'message', 'respondedAt'])
+        && request.resource.data.rsvpStatus in ['confirmed', 'declined']
+        && request.resource.data.confirmedCompanions is int
+        && request.resource.data.confirmedCompanions >= 0
+        && request.resource.data.confirmedCompanions <= resource.data.maxCompanions);
 
       allow create, delete: if isAdmin();
     }
