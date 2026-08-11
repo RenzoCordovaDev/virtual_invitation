@@ -22,4 +22,9 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: 'Ceremonia' })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'Recepción' })).toBeInTheDocument()
   })
+
+  it('renderiza el módulo dress-code', () => {
+    render(<App />)
+    expect(screen.getByRole('heading', { name: 'Código de vestimenta' })).toBeInTheDocument()
+  })
 })
