@@ -17,7 +17,7 @@ _Última actualización: 2026-08-11_
 - [ ] Definir librería de estilos (CSS Modules vs Tailwind)
 - [ ] Definir proveedor de sign-in (password vs Google) para Firebase Auth
 - [ ] Crear proyecto en Firebase Console (nombre, región)
-- [ ] Crear repositorio en GitHub y conectar remoto
+- [x] Crear repositorio en GitHub y conectar remoto — https://github.com/RenzoCordovaDev/virtual_invitation (público)
 
 ## Fase 1 — Setup del proyecto
 
