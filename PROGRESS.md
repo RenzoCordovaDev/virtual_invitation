@@ -18,7 +18,9 @@ _Última actualización: 2026-08-11_
 - [x] Definir proveedor de sign-in — Google Sign-In (allow-list de 3 correos)
 - [x] Definir identidad visual y patrón de navegación (`docs/DESIGN.md`)
 - [x] Definir mapa de pantallas (invitado + admin) (`docs/DESIGN.md`)
-- [ ] Crear proyecto en Firebase Console (nombre, región)
+- [x] Crear proyecto en Firebase Console — `boda-teresa-renzo` (región de
+      Firestore/Storage aún sin definir, se elige en Fase 1 al activar esos
+      productos)
 - [x] Crear repositorio en GitHub y conectar remoto — https://github.com/RenzoCordovaDev/virtual_invitation (público)
 
 ## Fase 1 — Setup del proyecto
@@ -80,3 +82,8 @@ antes de marcarse `[x]`.
   tinto/borgoña, champagne, palo rosa, beige) están prohibidos para invitados
   sin excepción. Próximo paso: crear proyecto en Firebase Console y arrancar
   Fase 1 (scaffold).
+- 2026-08-11: Proyecto Firebase creado — ID `boda-teresa-renzo`
+  (https://console.firebase.google.com/project/boda-teresa-renzo/overview).
+  Falta elegir región de Firestore/Storage y habilitar Firestore, Auth (Google
+  Sign-In) y Hosting — se hace en Fase 1 junto con el scaffold. Fase 0
+  (planificación) queda cerrada.

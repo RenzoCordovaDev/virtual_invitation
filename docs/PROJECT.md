@@ -54,7 +54,8 @@ Los invitados (público) no se autentican: acceden por su link único
 
 - **Frontend**: React + Vite (SPA), React Router para rutas públicas (`/`, `/i/:slug`)
   y privadas (`/admin/*`).
-- **Backend/datos**: Firebase
+- **Backend/datos**: Firebase (proyecto `boda-teresa-renzo`,
+  https://console.firebase.google.com/project/boda-teresa-renzo/overview)
   - **Firestore**: colección `guests` (invitados/familias, slug único, cupo de
     acompañantes, estado de confirmación, respuesta) — es la única data dinámica.
     El contenido del evento (nombres, fecha, ubicaciones, dress code, mesa de
@@ -141,7 +142,7 @@ Por ser público, se sigue esta regla estricta:
 
 ## 9. Pendientes de definición
 
-- Nombre del proyecto Firebase (aún no creado en Firebase Console).
+- Región de Firestore/Storage (se elige al habilitar esos productos en Fase 1).
 - CI (GitHub Actions) para correr tests en cada PR — deseable, no bloqueante para
   arrancar a codificar.
 - Fotos reales, coordenadas exactas de los locales — ver `docs/DESIGN.md`
