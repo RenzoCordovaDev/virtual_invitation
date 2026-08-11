@@ -54,7 +54,7 @@ ni `informacion_base.local.md` trackeados).
 
 ## Fase 2 — Módulos funcionales (v1)
 
-- [ ] `countdown` — cuenta regresiva
+- [x] `countdown` — cuenta regresiva
 - [ ] `gallery` — galería de fotos / historia de la pareja
 - [ ] `location` — mapas + horarios ceremonia/recepción
 - [ ] `dress-code` — código de vestimenta y paleta
@@ -123,3 +123,13 @@ antes de marcarse `[x]`.
   reglas desplegadas; Google Sign-In habilitado en Auth; app web registrada
   por CLI y `.env.local` completado con la config real (gitignored). Fase 1
   queda 100% cerrada. Siguiente paso: Fase 2, módulo `countdown`.
+- 2026-08-11: Módulo `countdown` certificado — primer módulo funcional de la
+  Fase 2. Incluye `src/content/event.ts` (contenido tipado desde
+  `informacion_base.md`, fecha ancla en ISO con offset -05:00 de Perú para
+  que el countdown sea correcto sin importar la zona horaria del invitado) y
+  el shell mínimo de scroll-snap (`src/layout/ScrollContainer.tsx` +
+  `Section.tsx`) que usarán los próximos módulos. Tests unitarios del hook
+  (incluye el caso `isPast`) y del componente, más e2e actualizado al
+  contenido real. Build/lint/unit/e2e en verde. Siguiente paso: elegir el
+  próximo módulo de la Fase 2 (`gallery`, `location`, `dress-code`,
+  `gift-table`, `music-player`, `i18n`, `rsvp` o `admin`).
