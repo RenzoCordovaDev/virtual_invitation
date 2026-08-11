@@ -64,7 +64,7 @@ ni `informacion_base.local.md` trackeados).
 - [x] `music-player` — audio de fondo — control flotante listo, sin archivo
       de audio real todavía (no renderiza nada hasta tenerlo)
 - [x] `i18n` — multi-idioma ES/EN (toda la app traducida)
-- [ ] `rsvp` — confirmación de asistencia por link personalizado
+- [x] `rsvp` — confirmación de asistencia por link personalizado
 - [x] `admin` — login + gestión de invitados + links + respuestas (falta
       seedear los 3 correos reales en `admins` de Firestore producción)
 
@@ -87,6 +87,10 @@ antes de marcarse `[x]`.
   recibirlas en `src/content/gallery.ts` (`galleryPhotos`, `ourStory`) sin
   tocar el componente.
 - Coordenadas/place_id exactos de los locales (mejora opcional para QR).
+- Archivo de audio real para `music-player` (canción prevista: "Wonderwall").
+- Seedear los 3 correos reales de administradores en la colección `admins`
+  de Firestore **producción** (manual en consola — ver nota del módulo
+  `admin` más abajo). Sin esto, nadie puede entrar al panel real todavía.
 
 ## Notas de sesión
 
@@ -210,3 +214,23 @@ antes de marcarse `[x]`.
   Es un paso manual en la consola de Firebase (colección `admins`, doc ID =
   correo, con un campo `email`), igual de rápido que los pasos de Fase 1.
   Siguiente paso: módulo `rsvp`.
+- 2026-08-11: Módulo `rsvp` certificado — **último módulo de la Fase 2, los 9
+  quedan completos**. `useGuestBySlug` carga el invitado real por slug;
+  `RsvpForm` confirma/rechaza con cupo de acompañantes acotado al máximo del
+  invitado (validado también del lado del servidor en `firestore.rules`, no
+  solo en el formulario — nadie puede mandar un número mayor llamando a la
+  API directo); `/` sin slug muestra el mensaje de usar el link personal.
+  De paso se separó `src/lib/firebase/authConfig.ts` de `config.ts`: el SDK
+  de Auth solo pesa en el chunk de admin (78KB) en vez del bundle principal
+  de invitados (que ahora sí incluye Firestore, necesario para RSVP: 712KB).
+  E2E real contra el emulador (`e2e/rsvp.spec.ts`): confirma asistencia
+  desde `/i/:slug` y verifica el documento en Firestore. Reglas
+  desplegadas a producción. 80 tests unitarios + 5 e2e (suite completa
+  corrida dos veces seguidas sin fallos), todos en verde.
+
+  **Pendientes reales antes de un despliegue a producción usable**: seedear
+  los 3 correos de administradores reales en Firestore (ver nota del módulo
+  `admin`), fotos/historia para `gallery`, archivo de audio para
+  `music-player`, números reales de mesa de regalos. Ninguno bloquea seguir
+  desarrollando — la Fase 2 (funcionalidad) está completa. Siguiente paso:
+  Fase 3 (integración y despliegue) — ver checklist más arriba.

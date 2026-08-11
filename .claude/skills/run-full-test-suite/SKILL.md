@@ -12,9 +12,13 @@ inventar resultados.
 1. Unitarios: `npm run test` (Vitest). Si el módulo bajo prueba es específico, se
    puede acotar con `npm run test -- <patrón>`.
 2. E2E: `npm run test:e2e` (Playwright), contra el emulador de Firebase — nunca
-   contra el proyecto Firebase productivo. Si el emulador no está corriendo,
-   levantarlo primero (`firebase emulators:start` o el script equivalente) antes de
-   correr Playwright.
+   contra el proyecto Firebase productivo. Requiere Java 21+ instalado. Si el
+   emulador no está corriendo, levantarlo primero en otra terminal:
+   `firebase emulators:start --only auth,firestore --project boda-teresa-renzo`
+   (queda escuchando en Auth :9099 / Firestore :8080 / UI :4000). Playwright NO
+   levanta los emuladores por sí solo — solo el build+preview de la app (ver
+   `playwright.config.ts`); `e2e/global-setup.ts` siembra datos de prueba contra
+   el emulador ya corriendo antes de cada corrida.
 3. Reporta: cuántos tests unitarios y e2e pasaron/fallaron, y para cada falla el
    archivo y la razón (no solo "falló").
 4. Si algo falla, no lo marques como éxito parcial — el resultado es "no certificable"
