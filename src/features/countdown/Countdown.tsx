@@ -1,5 +1,6 @@
 import { ceremony } from '../../content/event'
 import { useI18n } from '../i18n'
+import { formatEventDate } from './formatEventDate'
 import { useCountdown } from './useCountdown'
 
 const UNIT_KEYS = [
@@ -10,7 +11,7 @@ const UNIT_KEYS = [
 ] as const
 
 export function Countdown() {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const countdown = useCountdown(ceremony.dateTimeISO)
 
   if (countdown.isPast) {
@@ -27,6 +28,9 @@ export function Countdown() {
   return (
     <div className="flex flex-col items-center gap-8 text-center">
       <h2 className="font-subtitle text-2xl text-guinda-oscuro">{t.countdownHeading}</h2>
+      <p className="text-guinda-oscuro/70 -mt-6 text-sm">
+        {formatEventDate(ceremony.dateTimeISO, locale)}
+      </p>
       <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
         {UNIT_KEYS.map((key) => (
           <div
