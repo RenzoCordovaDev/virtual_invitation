@@ -21,6 +21,15 @@ describe('Countdown', () => {
     expect(screen.getByText('1')).toBeInTheDocument()
   })
 
+  it('muestra la fecha completa del evento (no solo la cuenta regresiva)', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-12-25T17:00:00-05:00'))
+
+    renderWithProviders(<Countdown />)
+
+    expect(screen.getByText('Sábado, 26 de diciembre de 2026')).toBeInTheDocument()
+  })
+
   it('muestra un mensaje alternativo cuando la fecha ya pasó', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2027-01-01T00:00:00-05:00'))
