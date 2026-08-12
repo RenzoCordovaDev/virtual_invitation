@@ -1,6 +1,7 @@
 import { getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { expect, test } from '@playwright/test'
+import { openEnvelope } from './helpers'
 
 process.env.FIRESTORE_EMULATOR_HOST = '127.0.0.1:8080'
 const PROJECT_ID = 'boda-teresa-renzo'
@@ -30,6 +31,7 @@ test.describe('rsvp', () => {
       })
 
     await page.goto(`/i/${slug}`)
+    await openEnvelope(page)
     await expect(page.getByText(/Familia E2E RSVP/)).toBeVisible()
 
     await page.getByRole('button', { name: 'Sí, ahí estaré' }).click()
@@ -48,6 +50,7 @@ test.describe('rsvp', () => {
 
   test('un link inválido muestra el mensaje de no encontrado', async ({ page }) => {
     await page.goto('/i/slug-que-no-existe')
+    await openEnvelope(page)
 
     await expect(
       page.getByText('No encontramos tu invitación. Verifica el link que te compartimos.'),
