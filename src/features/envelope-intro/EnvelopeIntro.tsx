@@ -1,10 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { useI18n } from '../i18n'
+import { EnvelopeFace } from './EnvelopeFace'
 import { ParticleBurst } from './ParticleBurst'
 
-const HALF_TRANSITION = { duration: 0.9, delay: 0.3, ease: [0.65, 0, 0.35, 1] as const }
-const FLAP_TRANSITION = { duration: 0.5, ease: 'easeIn' as const }
+const HALF_TRANSITION = { duration: 0.9, delay: 0.35, ease: [0.65, 0, 0.35, 1] as const }
+const FACE_TRANSITION = { duration: 0.35, ease: 'easeIn' as const }
 const SEAL_PULSE = { duration: 2.4, repeat: Infinity, ease: 'easeInOut' as const }
 
 export function EnvelopeIntro() {
@@ -26,27 +27,30 @@ export function EnvelopeIntro() {
       <AnimatePresence>
         {!isOpen && (
           <div className="fixed inset-0 z-50 overflow-hidden">
+            {/* Cuerpo del sobre: se parte en dos para revelar el contenido. */}
             <motion.div
-              className="from-guinda-oscuro to-guinda absolute inset-x-0 top-0 h-1/2 bg-linear-to-b"
+              className="bg-guinda absolute inset-x-0 top-0 h-1/2"
               exit={{ y: '-100%' }}
               transition={HALF_TRANSITION}
             />
             <motion.div
-              className="from-guinda-oscuro to-guinda absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t"
+              className="bg-guinda absolute inset-x-0 bottom-0 h-1/2"
               exit={{ y: '100%' }}
               transition={HALF_TRANSITION}
             />
 
+            {/* Dorso con las 4 solapas — se desvanece antes de que el
+                cuerpo se parta. className fija el tamaño explícito: al
+                animar "scale" este div pasa a ser containing block de los
+                "absolute inset-0" de EnvelopeFace, y sin tamaño propio
+                colapsaría a 0x0 durante la transición. */}
             <motion.div
-              className="from-guinda-oscuro to-guinda absolute inset-x-0 top-0 h-[32vh] bg-linear-to-br"
-              style={{
-                clipPath: 'polygon(0 0, 100% 0, 50% 100%)',
-                transformPerspective: 1000,
-                transformOrigin: 'top center',
-              }}
-              exit={{ rotateX: -160, opacity: 0 }}
-              transition={FLAP_TRANSITION}
-            />
+              className="absolute inset-0"
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={FACE_TRANSITION}
+            >
+              <EnvelopeFace />
+            </motion.div>
 
             <div className="absolute inset-0 flex items-center justify-center">
               <motion.button
