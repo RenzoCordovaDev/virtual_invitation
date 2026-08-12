@@ -2,6 +2,7 @@ import { useParams } from 'react-router'
 import { isFeatureEnabled } from '../config/features'
 import { Countdown } from '../features/countdown'
 import { DressCodeSection } from '../features/dress-code'
+import { EnvelopeIntro } from '../features/envelope-intro'
 import { GallerySection } from '../features/gallery'
 import { GiftTableSection } from '../features/gift-table'
 import { I18nProvider, LanguageToggle } from '../features/i18n'
@@ -17,6 +18,7 @@ export function InvitationPage() {
 
   return (
     <I18nProvider>
+      {isFeatureEnabled('envelopeIntro') && <EnvelopeIntro />}
       <ScrollContainer>
         {isFeatureEnabled('countdown') && (
           <Section>

@@ -1,6 +1,7 @@
 export type Locale = 'es' | 'en'
 
 export interface Translations {
+  envelopeSealText: string
   countdownHeading: string
   countdownDays: string
   countdownHours: string
@@ -36,6 +37,7 @@ export interface Translations {
 
 export const translations: Record<Locale, Translations> = {
   es: {
+    envelopeSealText: 'Click para abrir',
     countdownHeading: 'Falta muy poco para decir "sí"',
     countdownDays: 'Días',
     countdownHours: 'Horas',
@@ -70,6 +72,7 @@ export const translations: Record<Locale, Translations> = {
     rsvpSubmitError: 'No se pudo enviar tu respuesta. Intenta de nuevo.',
   },
   en: {
+    envelopeSealText: 'Click to open',
     countdownHeading: 'Just a little longer to say "I do"',
     countdownDays: 'Days',
     countdownHours: 'Hours',

@@ -3,6 +3,7 @@
  * Apagar un flag debe poder desactivar el módulo sin tocar el resto.
  */
 export const features = {
+  envelopeIntro: true,
   countdown: true,
   gallery: true,
   location: true,
