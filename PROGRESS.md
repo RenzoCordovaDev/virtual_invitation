@@ -54,6 +54,9 @@ ni `informacion_base.local.md` trackeados).
 
 ## Fase 2 — Módulos funcionales (v1)
 
+- [x] `envelope-intro` — modal de sobre a pantalla completa al iniciar, se
+      abre con click (agregado post-lanzamiento de Fase 2, a pedido del
+      usuario)
 - [x] `countdown` — cuenta regresiva
 - [x] `gallery` — galería de fotos / historia de la pareja (estructura +
       estado "próximamente"; contenido real pendiente)
@@ -264,3 +267,14 @@ antes de marcarse `[x]`.
   producción. Pendiente: borrar ese invitado de prueba antes de cargar la
   lista real (o dejarlo y limpiarlo junto con el resto en ese momento).
   Sigue faltando el correo real de la organizadora.
+- 2026-08-11: Primer cambio de diseño post-Fase 2, a pedido del usuario:
+  módulo `envelope-intro` — modal de sobre a pantalla completa al cargar,
+  se abre con click en el sello ("Click para abrir"), animación de apertura
+  (solapa se desvanece, las dos mitades se separan hacia los bordes)
+  implementada en CSS propio. Documentado en `docs/PROJECT.md` (tabla de
+  módulos) y `docs/DESIGN.md` (sección 2 y mapa de pantallas), como pidió
+  el usuario explícitamente para todo cambio de diseño futuro. Los e2e que
+  navegan a `/` o `/i/:slug` se actualizaron para abrir el sobre primero
+  (`e2e/helpers.ts`). Verificado visualmente con Playwright (sobre cerrado,
+  animación a mitad de camino, contenido revelado sin overlay residual).
+  84 tests unitarios + 5 e2e (corridos dos veces seguidas), todos en verde.

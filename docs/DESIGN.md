@@ -47,6 +47,15 @@ están reservados para los novios/personas importantes del evento.
 
 ## 2. Patrón de navegación (invitados)
 
+**Modal de sobre al iniciar.** Antes de ver cualquier sección, la pantalla
+completa muestra un sobre cerrado (solapa + sello con "Click para abrir").
+Al hacer click en el sello, la solapa se desvanece y el sobre se separa en
+dos mitades que se deslizan hacia arriba/abajo hasta salir de la pantalla,
+revelando la primera sección de atrás. Implementado en
+`src/features/envelope-intro/` (CSS con keyframes propios, no utilidades de
+Tailwind — la animación multi-etapa lo justifica). Solo aparece en la
+experiencia de invitado (`/`, `/i/:slug`), nunca en `/admin/*`.
+
 **Scroll-snap de pantalla completa.** Cada sección ocupa exactamente un
 viewport (100dvh). Un gesto de scroll (rueda, trackpad o swipe táctil) avanza a
 la sección completa siguiente o anterior — nunca se ve una sección a medias ni
@@ -80,6 +89,9 @@ Una sola ruta con contenido personalizable por invitado:
 - `/i/:slug` — invitación real que recibe cada invitado/familia. Mismo
   contenido, pero la sección RSVP queda pre-cargada con su nombre y su cupo de
   acompañantes.
+
+Antes de las secciones, el modal de sobre (`envelope-intro`, ver sección 2)
+cubre toda la pantalla hasta que el invitado hace click para abrir.
 
 Secciones, en orden (cada una = 1 pantalla completa del scroll-snap):
 

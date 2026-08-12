@@ -18,17 +18,18 @@ desacoplables**: cada una vive en su propia carpeta de feature, se activa/desact
 desde un registro central de features, y no rompe al resto si se retira. Ver
 `ARCHITECTURE.md` (sección 4 de este documento) para el patrón exacto.
 
-| Módulo         | Descripción                                                         | Prioridad |
-| -------------- | ------------------------------------------------------------------- | --------- |
-| `countdown`    | Cuenta regresiva a la fecha/hora del evento religioso               | v1        |
-| `gallery`      | Galería de fotos / historia de la pareja                            | v1        |
-| `location`     | Mapas embebidos + horarios de iglesia y recepción                   | v1        |
-| `dress-code`   | Código de vestimenta y paleta de colores                            | v1        |
-| `rsvp`         | Confirmación de asistencia, invitación personalizada por link único | v1        |
-| `gift-table`   | Datos de cuentas/Yape/Plin para regalo                              | v1        |
-| `music-player` | Reproductor de audio de fondo (autoplay/mute toggle)                | v1        |
-| `i18n`         | Multi-idioma (ES por defecto, EN opcional)                          | v1        |
-| `admin`        | Panel privado: gestión de invitados, links, respuestas RSVP         | v1        |
+| Módulo           | Descripción                                                         | Prioridad |
+| ---------------- | ------------------------------------------------------------------- | --------- |
+| `envelope-intro` | Modal de sobre a pantalla completa al cargar; se abre con un click  | v1        |
+| `countdown`      | Cuenta regresiva a la fecha/hora del evento religioso               | v1        |
+| `gallery`        | Galería de fotos / historia de la pareja                            | v1        |
+| `location`       | Mapas embebidos + horarios de iglesia y recepción                   | v1        |
+| `dress-code`     | Código de vestimenta y paleta de colores                            | v1        |
+| `rsvp`           | Confirmación de asistencia, invitación personalizada por link único | v1        |
+| `gift-table`     | Datos de cuentas/Yape/Plin para regalo                              | v1        |
+| `music-player`   | Reproductor de audio de fondo (autoplay/mute toggle)                | v1        |
+| `i18n`           | Multi-idioma (ES por defecto, EN opcional)                          | v1        |
+| `admin`          | Panel privado: gestión de invitados, links, respuestas RSVP         | v1        |
 
 Fuera de alcance por ahora (no se descarta a futuro, no se construye en v1):
 transmisión en vivo del evento, integración de pagos, app móvil nativa.
