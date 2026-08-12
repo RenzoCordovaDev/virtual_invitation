@@ -48,13 +48,37 @@ están reservados para los novios/personas importantes del evento.
 ## 2. Patrón de navegación (invitados)
 
 **Modal de sobre al iniciar.** Antes de ver cualquier sección, la pantalla
-completa muestra un sobre cerrado (solapa + sello con "Click para abrir").
-Al hacer click en el sello, la solapa se desvanece y el sobre se separa en
-dos mitades que se deslizan hacia arriba/abajo hasta salir de la pantalla,
-revelando la primera sección de atrás. Implementado en
-`src/features/envelope-intro/` (CSS con keyframes propios, no utilidades de
-Tailwind — la animación multi-etapa lo justifica). Solo aparece en la
-experiencia de invitado (`/`, `/i/:slug`), nunca en `/admin/*`.
+completa muestra el dorso de un sobre cerrado: 4 solapas triangulares
+(arriba/derecha/abajo/izquierda) que se encuentran en el centro — el patrón
+clásico de un sobre visto por detrás — con sombreado distinto por solapa
+(más clara arriba, más oscura abajo, simulando luz desde arriba) y líneas
+doradas marcando cada pliegue. En el centro, un sello con el monograma
+"T&R" y el texto "Click para abrir", con un pulso sutil e infinito que
+invita al click. Al hacer click:
+
+1. Una ráfaga de ~45 partículas (pétalos/destellos dorados) explota desde
+   el sello.
+2. El dorso (4 solapas + líneas) se desvanece.
+3. El cuerpo del sobre se separa en dos mitades que se deslizan hacia
+   arriba/abajo hasta salir de la pantalla, revelando la sección de atrás.
+
+Implementado en `src/features/envelope-intro/`:
+
+- `EnvelopeIntro.tsx` — orquesta el estado y usa **Framer Motion**
+  (`AnimatePresence` + `motion.*`) para las transiciones, en vez de CSS a
+  mano — física de animación real y exit animations limpias sin
+  `setTimeout` manual.
+- `EnvelopeFace.tsx` — las 4 solapas (`clip-path` + `color-mix()` para el
+  sombreado) y las líneas de pliegue (SVG, `viewBox="0 0 100 100"` con
+  `preserveAspectRatio="none"` para que las diagonales lleguen exacto a
+  cada esquina sin importar el aspect ratio de la pantalla).
+- `ParticleBurst.tsx` — la ráfaga de partículas usa **`<canvas>`** a
+  propósito: animar ~45 partículas con física (gravedad, rotación, fade)
+  por frame vía `requestAnimationFrame` es mucho más liviano que animar esa
+  cantidad de nodos DOM.
+
+Solo aparece en la experiencia de invitado (`/`, `/i/:slug`), nunca en
+`/admin/*`.
 
 **Scroll-snap de pantalla completa.** Cada sección ocupa exactamente un
 viewport (100dvh). Un gesto de scroll (rueda, trackpad o swipe táctil) avanza a
@@ -96,7 +120,9 @@ cubre toda la pantalla hasta que el invitado hace click para abrir.
 Secciones, en orden (cada una = 1 pantalla completa del scroll-snap):
 
 1. **Hero / Portada** — nombres, fecha, imagen/fondo, CTA para bajar
-2. **Countdown** — cuenta regresiva a la fecha/hora de la ceremonia
+2. **Countdown** — cuenta regresiva a la fecha/hora de la ceremonia, con la
+   fecha completa ("Sábado, 26 de diciembre de 2026") debajo del título —
+   para que no dependa solo de la cuenta regresiva para saber cuándo es
 3. **Historia / Galería** — fotos y/o historia breve de la pareja
 4. **Ceremonia** — iglesia, hora, dirección, mapa embebido
 5. **Recepción** — local, hora, dirección, mapa embebido

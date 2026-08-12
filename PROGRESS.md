@@ -278,3 +278,23 @@ antes de marcarse `[x]`.
   (`e2e/helpers.ts`). Verificado visualmente con Playwright (sobre cerrado,
   animación a mitad de camino, contenido revelado sin overlay residual).
   84 tests unitarios + 5 e2e (corridos dos veces seguidas), todos en verde.
+- 2026-08-11: Iteración de diseño en local (a pedido del usuario: "más
+  impacto visual" + "trabajemos en local antes de desplegar cada vez").
+  Flujo usado: cambios en el dev server local (`npm run dev` /
+  `npm run dev:host` para compartir en la misma WiFi — el usuario lo probó
+  con su esposa), revisión visual mía con Playwright antes de cada entrega,
+  commits locales sin push hasta aprobación final. Resultado:
+  - `envelope-intro` rediseñado con **Framer Motion** (`AnimatePresence`)
+    en vez de CSS a mano, y una ráfaga de partículas en **`<canvas>`**
+    (`ParticleBurst.tsx`) al abrir.
+  - El dorso del sobre ahora muestra las 4 solapas triangulares clásicas
+    (`EnvelopeFace.tsx`, `clip-path` + `color-mix()` + líneas SVG) en vez
+    de un solo triángulo — feedback: "no se veía como un sobre real".
+  - `countdown` ahora muestra la fecha completa del evento debajo del
+    título (`formatEventDate.ts`) — feedback: la cuenta regresiva sola no
+    dejaba claro cuándo es exactamente el evento.
+  - `docs/DESIGN.md` actualizado para reflejar la implementación real
+    (Framer Motion, canvas, 4 solapas) y la fecha en countdown.
+  Build/lint/unit (88 tests)/e2e (5, corridos dos veces) en verde. Todo
+  comiteado y **pusheado** — el usuario y su esposa ya revisaron y
+  aprobaron el resultado en local antes de subir.
