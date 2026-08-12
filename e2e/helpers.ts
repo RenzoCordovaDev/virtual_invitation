@@ -7,6 +7,10 @@ import type { Page } from '@playwright/test'
  * esto antes de cualquier click/fill sobre el contenido.
  */
 export async function openEnvelope(page: Page) {
-  await page.getByRole('button', { name: 'Click para abrir' }).click()
+  // El sello tiene una animación de "respiración" infinita (Framer Motion) —
+  // Playwright lo considera perpetuamente "inestable" para un click normal,
+  // aunque un usuario real puede clickearlo sin problema. force:true evita
+  // ese chequeo de estabilidad sin afectar el resto de las validaciones.
+  await page.getByRole('button', { name: 'Click para abrir' }).click({ force: true })
   await page.getByRole('button', { name: 'Click para abrir' }).waitFor({ state: 'hidden' })
 }
