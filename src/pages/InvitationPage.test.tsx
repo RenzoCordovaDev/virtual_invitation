@@ -12,6 +12,11 @@ describe('InvitationPage', () => {
     vi.useRealTimers()
   })
 
+  it('renderiza el módulo envelope-intro sobre el resto del contenido', () => {
+    render(<InvitationPage />)
+    expect(screen.getByRole('button', { name: 'Click para abrir' })).toBeInTheDocument()
+  })
+
   it('renderiza el módulo countdown (habilitado en config/features.ts)', () => {
     render(<InvitationPage />)
     expect(screen.getByRole('heading', { name: /falta muy poco/i })).toBeInTheDocument()
